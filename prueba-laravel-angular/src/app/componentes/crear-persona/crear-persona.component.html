@@ -1,0 +1,60 @@
+<div class="card border-dark mt-3">
+    <div class="card-header bg-primary">
+        <h3 class="card-title text-center">Agregar personas</h3>
+    </div>
+    <div class="card-body">
+        <div class="alert alert-danger" *ngIf="error.length > 0" role="alert">
+            <ul>
+                <li *ngFor="let item of error">
+                    {{item}}
+                </li>
+            </ul>
+        </div>
+        <form class="needs-validation" [formGroup]="formulario" (ngSubmit)="guardarPersona()" novalidate>
+
+            <div class="form-row">
+                <div class="col-xs-12 col-md-6">
+                    <label for="nombre" class="ent-titulo"><span class="color">*</span> Nombres</label>
+                    <input type="text" class="form-control ent" id="nombre" name="nombre" formControlName="nombre" autocomplete="off">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <label for="apellidos" class="ent-titulo"><span class="color">*</span> Apellidos</label>
+                    <input type="text" class="form-control ent" id="apellidos" name="apellidos" formControlName="apellidos" autocomplete="off">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-xs-12 col-md-3">
+                    <label for="cedula" class="ent-titulo"><span class="color">*</span> cédula</label>
+                    <input type="text" class="form-control ent" id="cedula" name="cedula" formControlName="cedula" autocomplete="off">
+                    <div class="mt-1 color" *ngIf="formulario.get('cedula').errors && formulario.get('cedula').dirty">
+                        <p *ngIf="formulario.get('cedula').hasError('pattern')">solo valores numéricos</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <label for="Correo" class="ent-titulo"><span class="color">*</span> Correo</label>
+                    <input type="text" class="form-control ent" id="Correo" name="Correo" formControlName="correo" autocomplete="off">
+                    <div class="mt-1 color" *ngIf="formulario.get('correo').errors && formulario.get('correo').dirty">
+                        <p *ngIf="formulario.get('correo').hasError('email')">formato de correo invalido</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <label for="telefono" class="ent-titulo"><span class="color">*</span> Teléfono</label>
+                    <input type="text" class="form-control ent" id="telefono" name="telefono" formControlName="telefono" autocomplete="off">
+                    <div class="mt-1 color" *ngIf="formulario.get('telefono').errors && formulario.get('telefono').dirty">
+                        <p *ngIf="formulario.get('telefono').hasError('pattern')">solo valores numéricos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mx-auto" style="width:120px;">
+                <input class="btn btn-primary mt-3" type="submit" [disabled]="!formulario.valid" value="Crear registro">
+            </div>
+        </form>
+    </div>
+</div>
